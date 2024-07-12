@@ -43,21 +43,35 @@ while True:
             print('https://samara.express-shina.ru' + img)
             pixx = ('https://samara.express-shina.ru' + img)
             params = look.find('div', class_='main_characteristic').find_all('div', class_='list_parameter')
-            print(' '.join(params[0].text.strip().split()))
-            print(' '.join(params[1].text.strip().split()))
-            print(' '.join(params[2].text.strip().split()))
-            print(' '.join(params[3].text.strip().split()))
+            print(' '.join(params[0].text.strip().split()).replace('"', ''))
+            param_1 = (' '.join(params[0].text.strip().split()).replace('"', ''))
+            print(' '.join(params[1].text.strip().split()).replace('"', ''))
+            param_2 = (' '.join(params[1].text.strip().split()).replace('"', ''))
+            print(' '.join(params[2].text.strip().split()).replace('"', ''))
+            param_3 = (' '.join(params[2].text.strip().split()).replace('"', ''))
+            print(' '.join(params[3].text.strip().split()).replace('"', ''))
+            param_4 = (' '.join(params[3].text.strip().split()).replace('"', ''))
             print('\n')
 
-            # storage = {'zagol': nazvan,
-            #            'cena': cena,
-            #            'articul': codde,
-            #            'img': pixx}
-            #
-            # with open(f'{file_name}.csv', 'a+', newline='', encoding='utf-16') as f:
-            #     pisar = csv.writer(f, delimiter=';', lineterminator="\r")
-            #     pisar.writerow([storage['zagol'],
-            #                     storage['cena'],
-            #                     storage['articul'],
-            #                     storage['img']])
+            storage = {'zagol': nazvan,
+                       'cena': cena,
+                       'param_1': param_1,
+                       'param_2': param_2,
+                       'param_3': param_3,
+                       'param_4': param_4,
+                       'articul': codde,
+                       'img': pixx,
+                       'URL': w}
+
+            with open(f'{file_name}.csv', 'a+', newline='', encoding='utf-16') as f:
+                pisar = csv.writer(f, delimiter=';', lineterminator="\r")
+                pisar.writerow([storage['zagol'],
+                                storage['cena'],
+                                storage['articul'],
+                                storage['param_1'],
+                                storage['param_2'],
+                                storage['param_3'],
+                                storage['param_4'],
+                                storage['img'],
+                                storage['URL']])
         count += 1
